@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LBP.me - Sign In</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>🔑 LBP.me - Sign In 🔑</h1>
+    <nav>
+      <a href="index.html">🏠 Home</a>
+      <a href="levels.html">🌟 Browse Levels</a>
+      <a href="auth.html">🔐 Sign In</a>
+    </nav>
+  </header>
+  
+  <section>
+    <h2>Sign In</h2>
+    <form id="auth-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" required placeholder="Start with a letter, e.g., Jeff123">
+      <button type="submit">Sign In</button>
+    </form>
+    <p id="auth-message"></p>
+  </section>
+
+  <footer>
+    <p>© 2025 LBP.me | Made with ❤️</p>
+  </footer>
+  
+  <script>
+    const authForm = document.getElementById("auth-form");
+    const authMessage = document.getElementById("auth-message");
+
+    authForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+
+      // Validate username (must start with a letter, can contain numbers)
+      if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(username)) {
+        authMessage.textContent = "❌ Invalid username! Must start with a letter.";
+        return;
+      }
+
+      // Save user profile to localStorage
+      localStorage.setItem("currentUser", JSON.stringify({ username }));
+      authMessage.textContent = `✅ Welcome, ${username}! You are now signed in.`;
+
+      // Redirect to the profile page
+      setTimeout(() => {
+        window.location.href = "profile.html";
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
